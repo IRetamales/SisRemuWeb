@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="216" pageHeight="216" columnWidth="216" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a7d3661f-4f97-4720-a619-976a66c206b1">
+	<property name="ireport.zoom" value="5.054470284992944"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="rut" class="java.lang.String"/>
+	<parameter name="ano" class="java.lang.String"/>
+	<parameter name="mes" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     t1.codigo AS tconceptofuncionario_codigo,
+     t1.valor AS tconceptofuncionario_valor
+FROM
+     tconceptofuncionario t1
+JOIN tconcepto t2 on t1.codigo=t2.codigo
+	        and t1.año=t2.año
+	        and t1.mes=t2.mes
+WHERE t1.rut=$P{rut}
+AND t1.año=$P{ano}
+AND t1.mes=$P{mes}
+AND t2.tipoconcepto="D";]]>
+	</queryString>
+	<field name="tconceptofuncionario_codigo" class="java.lang.String"/>
+	<field name="tconceptofuncionario_valor" class="java.math.BigDecimal"/>
+	<group name="tconceptofuncionario_codigo">
+		<groupExpression><![CDATA[$F{tconceptofuncionario_codigo}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="1" width="87" height="20" uuid="93dd94ea-cbf6-4e4b-9841-b79201df8322"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="1" width="94" height="20" uuid="feabe30d-c96a-4bd9-87c7-d7dfa15f6bea"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="216" height="1" uuid="b9ab73e5-0f74-4fff-b595-f96c5ea49c61"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField>
+				<reportElement x="14" y="0" width="87" height="19" uuid="c0baf92c-e03e-4afb-9fdd-930e408d429b"/>
+				<textFieldExpression><![CDATA[$F{tconceptofuncionario_codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="108" y="0" width="94" height="19" uuid="26fdd5b5-ec5f-422b-b8d3-056926fd1f63"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{tconceptofuncionario_valor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

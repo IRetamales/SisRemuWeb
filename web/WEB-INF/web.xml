@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>IngresoPersona</servlet-name>
+        <servlet-class>servlet.IngresoPersona</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IngresoPeriodo</servlet-name>
+        <servlet-class>servlet.IngresoPeriodo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IngresoConcepto</servlet-name>
+        <servlet-class>servlet.IngresoConcepto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IngresoMantenedores</servlet-name>
+        <servlet-class>servlet.IngresoMantenedores</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>IngresoPersona</servlet-name>
+        <url-pattern>/IngresoPersona</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IngresoPeriodo</servlet-name>
+        <url-pattern>/IngresoPeriodo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IngresoConcepto</servlet-name>
+        <url-pattern>/IngresoConcepto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IngresoMantenedores</servlet-name>
+        <url-pattern>/IngresoMantenedores</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ed7b7e6f-94e8-4555-9288-cab6c05a688d">
+	<property name="ireport.zoom" value="2.143588810000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="rutliqui" class="java.lang.String"/>
+	<parameter name="mesliqui" class="java.lang.String"/>
+	<parameter name="anoliqui" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Articuno\\Documents\\NetBeansProjects\\sisRemuWeb\\src\\java\\reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="totalhaberes" class="java.lang.String"/>
+	<parameter name="totalimponible" class="java.lang.String"/>
+	<parameter name="totaltributable" class="java.lang.String"/>
+	<parameter name="totaldescuentos" class="java.lang.String"/>
+	<parameter name="liquidopagar" class="java.lang.String"/>
+	<parameter name="nombremes" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT concat(t1.nombres ,' ' , t1.apellidopaterno , ' ' , t1.apellidomaterno) as nombre
+from tfuncionario t1
+join tconceptofuncionario t2 on t1.rut=t2.rut
+where t1.rut=$P{rutliqui}
+and t2.mes=$P{mesliqui}
+and t2.año=$P{anoliqui}]]>
+	</queryString>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="131" y="15" width="294" height="27" uuid="9f2e043d-5d77-4006-b303-8cb44704fe2f"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[LIQUIDACION DE SUELDO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="131" y="42" width="121" height="20" uuid="fbebaa30-2602-421e-a44e-8175674acf21"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{nombremes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="252" y="42" width="21" height="20" uuid="6bf0ae3e-b3f7-41b1-bc34-4a4dddce1665"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="273" y="42" width="152" height="20" uuid="795cb3f0-e403-4eec-be64-6bd162287342"/>
+				<textFieldExpression><![CDATA[$P{anoliqui}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="75" splitType="Stretch">
+			<textField>
+				<reportElement x="112" y="0" width="360" height="20" uuid="b829e850-12ef-4289-aaf0-8c60b33a9daf"/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="78" y="55" width="100" height="20" uuid="ec4a84cf-acfd-40cc-ba75-9f1bab5fc5d2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[HABERES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="356" y="55" width="100" height="20" uuid="720af9a7-c021-48b7-b833-470e5b04d509"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DESCUENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="62" y="0" width="50" height="20" uuid="f80c8012-e00d-4081-b296-e443204665ea"/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="251" splitType="Stretch">
+			<rectangle>
+				<reportElement x="36" y="0" width="216" height="173" uuid="917baf5a-cf94-4056-ab4f-58c61931058c"/>
+			</rectangle>
+			<subreport>
+				<reportElement x="36" y="0" width="216" height="173" uuid="cf624f85-c5c2-44d1-9a25-511a3a4c2be2"/>
+				<subreportParameter name="rut">
+					<subreportParameterExpression><![CDATA[$P{rutliqui}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{anoliqui}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes">
+					<subreportParameterExpression><![CDATA[$P{mesliqui}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Haberes.jasper"]]></subreportExpression>
+			</subreport>
+			<rectangle>
+				<reportElement x="288" y="0" width="216" height="173" uuid="fdbc6154-1496-4d50-84c7-670b32eb4a73"/>
+			</rectangle>
+			<subreport>
+				<reportElement x="288" y="0" width="216" height="173" uuid="79299d48-8443-4dab-8b36-223e15485e59"/>
+				<subreportParameter name="rut">
+					<subreportParameterExpression><![CDATA[$P{rutliqui}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ano">
+					<subreportParameterExpression><![CDATA[$P{anoliqui}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mes">
+					<subreportParameterExpression><![CDATA[$P{mesliqui}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Descuentos.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="125" y="181" width="127" height="20" uuid="39c0191e-e5b9-4280-a6cd-a06aecee904b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{totalhaberes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="36" y="181" width="89" height="20" uuid="8d20a18f-b3fb-49d8-b854-fac8d534225a"/>
+				<text><![CDATA[Total Haberes:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="180" width="100" height="20" uuid="9d464836-9d7f-4851-a3bf-d6486f5f17b6"/>
+				<text><![CDATA[Total Descuentos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="201" width="89" height="20" uuid="bb507b2a-7ae1-48e7-bd17-d2bcca51cc65"/>
+				<text><![CDATA[Total Imponible]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="221" width="89" height="20" uuid="786f7761-aa8d-49c1-bd23-f4f3c87e0742"/>
+				<text><![CDATA[Total Tributable]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="125" y="201" width="127" height="20" uuid="7acaca2f-66a2-4f40-8018-1be8f6d69849"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{totalimponible}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="221" width="127" height="20" uuid="3abf9a7e-917a-4810-b1a2-d57fd922769e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{totaltributable}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="180" width="116" height="20" uuid="98172573-0bad-4d62-830a-947328140f98"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{totaldescuentos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="288" y="200" width="100" height="20" uuid="547b9d56-03a9-4b85-8dc0-1da886dc2010"/>
+				<text><![CDATA[Liquido a Pagar]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="388" y="200" width="116" height="20" uuid="6fa6a144-f1a1-406d-899d-fa7361550c55"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{liquidopagar}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<line>
+				<reportElement x="372" y="10" width="184" height="1" uuid="1e057ca6-0d32-42ec-a5bd-b0aa1d2c192c"/>
+			</line>
+			<staticText>
+				<reportElement x="425" y="11" width="79" height="15" uuid="921b1df4-b526-40c9-b21a-4d98221c52ea"/>
+				<text><![CDATA[Recibo conforme]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>
